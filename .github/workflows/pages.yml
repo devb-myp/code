@@ -1,0 +1,66 @@
+name: Publish component lab to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out the component lab
+        uses: actions/checkout@v4
+      - name: Validate the example collection
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const html = fs.readFileSync('index.html', 'utf8');
+          const match = html.match(/<script type="application\/json" id="examples">([\s\S]*?)<\/script>/);
+          if (!match) throw new Error('Missing example collection');
+          const examples = JSON.parse(match[1]);
+          if (examples.length !== 10) throw new Error('Expected 10 button examples');
+          for (const example of examples) {
+            const source = fs.readFileSync(example.path, 'utf8');
+            if (source !== example.html) throw new Error('Preview/source mismatch: ' + example.path);
+          }
+          console.log('Validated all 10 standalone examples and matching previews.');
+          NODE
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Prepare static site
+        run: |
+          mkdir -p _site
+          cp index.html _site/
+          cp -R buttons _site/
+          touch _site/.nojekyll
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Deploy site
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Verify the published pages
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          curl --fail --silent --show-error --retry 12 --retry-delay 5 --retry-all-errors --max-time 30 "$PAGE_URL" -o /tmp/component-lab-live.html
+          grep -Fq 'Explore buttons. Copy the HTML.' /tmp/component-lab-live.html
+          for file in buttons/*.html; do
+            curl --fail --silent --show-error --retry 4 --retry-delay 5 --retry-all-errors --max-time 30 "${PAGE_URL%/}/$file" -o /tmp/component-example-live.html
+            cmp "$file" /tmp/component-example-live.html
+          done
+          echo "Published index and all 10 examples verified at $PAGE_URL"
