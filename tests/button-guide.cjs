@@ -42,30 +42,36 @@ const path = require('node:path');
    await page.locator('[name=radius]').selectOption(radius);
    await expect(button).toHaveCSS('border-radius',radius+'px');
   }
-  for(const horizontal of ['flex-start','center','flex-end']) {
-   for(const vertical of ['flex-start','center','flex-end']) {
-    await page.locator('[name=horizontal]').selectOption(horizontal);
-    await page.locator('[name=vertical]').selectOption(vertical);
-    await expect(page.frameLocator('#preview').locator('body')).toHaveCSS('justify-content',horizontal);
-    await expect(page.frameLocator('#preview').locator('body')).toHaveCSS('align-items',vertical);
-    const rect=await button.evaluate(n=>({x:n.getBoundingClientRect().x,y:n.getBoundingClientRect().y,w:n.getBoundingClientRect().width,h:n.getBoundingClientRect().height,vw:innerWidth,vh:innerHeight}));
-    const x=horizontal==='flex-start'?32:horizontal==='center'?(rect.vw-rect.w)/2:rect.vw-rect.w-32;
-    const y=vertical==='flex-start'?32:vertical==='center'?(rect.vh-rect.h)/2:rect.vh-rect.h-32;
-    assert.ok(Math.abs(rect.x-x)<1 && Math.abs(rect.y-y)<1,JSON.stringify({horizontal,vertical,rect,x,y}));
-   }
-  }
+  await page.getByRole('button',{name:'Reset to starter'}).click();
+  await expect(page.locator('#source')).toHaveValue(starter);
+  assert.equal(starter.split('\n').length,10);
+  assert.ok(!starter.includes('<style>') && !starter.includes('<body>'));
+  assert.ok(!starter.includes('margin-left') && !starter.includes('margin-top'));
+  const origin=await button.boundingBox();
+  await page.locator('[name=marginLeft]').press('ArrowRight');
+  await expect(button).toHaveCSS('margin-left','10px');
+  await page.locator('[name=marginTop]').press('ArrowRight');
+  await expect(button).toHaveCSS('margin-top','10px');
+  const moved=await button.boundingBox();
+  assert.ok(Math.abs((moved.x-origin.x)-10)<1 && Math.abs((moved.y-origin.y)-10)<1,'Margins must move the button');
+  assert.ok((await page.locator('#source').inputValue()).includes('margin-left: 10px;'));
+  assert.ok((await page.locator('#source').inputValue()).includes('margin-top: 10px;'));
+  await page.getByLabel('Button text',{exact:true}).fill('Start learning');
+  await page.locator('[name=fontSize]').press('End');
+  await page.locator('[name=background]').fill('#0b6e4f');
+  await expect(button).toHaveCSS('background-color','rgb(11, 110, 79)');
   const edited=await page.locator('#source').inputValue();
   assert.equal(await page.locator('#preview').getAttribute('srcdoc'),edited);
   await page.getByRole('button',{name:'Copy HTML',exact:true}).click();
   await expect(page.locator('#copy-status')).toContainText('Copied.');
   assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),edited);
   const standalone=await context.newPage();
-  await standalone.setContent(edited);
+  await standalone.setContent('<!doctype html><html><body>'+edited+'</body></html>');
   await expect(standalone.locator('button')).toHaveText('Start learning');
   await expect(standalone.locator('button')).toHaveCSS('font-size','32px');
   await expect(standalone.locator('button')).toHaveCSS('background-color','rgb(11, 110, 79)');
-  await expect(standalone.locator('body')).toHaveCSS('justify-content','flex-end');
-  await expect(standalone.locator('body')).toHaveCSS('align-items','flex-end');
+  await expect(standalone.locator('button')).toHaveCSS('margin-left','10px');
+  await expect(standalone.locator('button')).toHaveCSS('margin-top','10px');
   await standalone.close();
   const literal='<img src=x onerror=alert(1)> & "go"';
   await page.getByLabel('Button text',{exact:true}).fill(literal);
@@ -88,6 +94,6 @@ const path = require('node:path');
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Guide overflows on mobile');
   await page.screenshot({path:'test-results/button-guide-mobile.png',fullPage:true});
   assert.deepEqual(errors,[]);
-  console.log('PASS: all five edit types, nine placements, copy/reproduction, escaped text, reset, clipboard fallback and mobile width.');
+  console.log('PASS: all five edit types, optional margins and 10-line starter, copy/reproduction, escaped text, reset, clipboard fallback and mobile width.');
  } finally {await browser.close();await new Promise(resolve=>server.close(resolve));}
 })().catch(error=>{console.error(error);process.exitCode=1;});

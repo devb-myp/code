@@ -6,7 +6,7 @@ Ten complete HTML examples from the verified **Buttons** page of the MYP 4 Figma
 
 [Open the annotated Buttons guide](https://devb-myp.github.io/code/button-guide.html).
 
-This preview uses **one button and one complete HTML block**, with numbered explanations for text, size, colours, shape and placement. Editing the controls updates both the preview and the copyable code. Students can reset the example and copy it into W3Schools. The standalone starter is [button.html](button.html).
+This preview starts with **one button in 10 lines of HTML**, with explanations outside the code. It uses inline styles for text size, padding, fill, text colour and corner shape. Optional margin-left and margin-top lines appear only when students change the spacing controls. The code has no page background, document boilerplate, separate style block or comments. Paste it inside the body of an existing HTML page or W3Schools example. The controls update the preview and copyable snippet together; reset restores the short starter in [button.html](button.html).
 
 This is the review example for the proposed teaching format. Other component categories have not yet been converted. The original example collection below remains available during review.
 

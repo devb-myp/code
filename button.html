@@ -1,47 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My button</title>
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      box-sizing: border-box;
-      padding: 32px;
-      background: #fef7ff;
-      font-family: Arial, sans-serif;
-
-      /* 5. PLACEMENT: flex-start, center or flex-end */
-      display: flex;
-      justify-content: center; /* left / centre / right */
-      align-items: center; /* top / middle / bottom */
-    }
-
-    .my-button {
-      font-family: inherit;
-      line-height: 1.25;
-      border: none;
-      cursor: pointer;
-      max-width: 100%;
-      overflow-wrap: anywhere;
-
-      /* 2. SIZE: text size and space inside the button */
-      font-size: 16px;
-      padding: 12px 24px; /* top & bottom, then left & right */
-
-      /* 3. COLOUR: button fill, then text */
-      background-color: #6750a4;
-      color: #ffffff;
-
-      /* 4. SHAPE: 0px = square, 12px = rounded, 999px = pill */
-      border-radius: 999px;
-    }
-  </style>
-</head>
-<body>
-  <!-- 1. TEXT: change the words between the button tags -->
-  <button class="my-button" type="button">Get help</button>
-</body>
-</html>
+<button type="button" style="
+  font-size: 16px;
+  padding: 12px 24px;
+  background-color: #6750a4;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+">
+  Get help
+</button>
