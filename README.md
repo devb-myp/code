@@ -2,6 +2,14 @@
 
 Ten complete HTML examples from the verified **Buttons** page of the MYP 4 Figma component lab.
 
+## New teaching format: Buttons review
+
+[Open the annotated Buttons guide](https://devb-myp.github.io/code/button-guide.html).
+
+This preview uses **one button and one complete HTML block**, with numbered explanations for text, size, colours, shape and placement. Editing the controls updates both the preview and the copyable code. Students can reset the example and copy it into W3Schools. The standalone starter is [button.html](button.html).
+
+This is the review example for the proposed teaching format. Other component categories have not yet been converted. The original example collection below remains available during review.
+
 ## Use the examples
 
 1. Download or clone this repository and open `index.html` in a browser.

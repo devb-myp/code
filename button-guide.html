@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buttons — MYP 4 Component Lab</title>
+<style>
+:root{--purple:#6750a4;--ink:#24202b;--muted:#625b6b;--line:#e6deed;--paper:#fff;--wash:#f7f3fb}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--wash);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1200px;padding:40px 24px 64px;margin:auto}a{color:var(--purple)}.eyebrow{text-transform:uppercase;letter-spacing:1.7px;font-size:12px;font-weight:750;color:var(--purple)}h1{font-size:clamp(32px,5vw,54px);line-height:1.12;letter-spacing:-1.5px;margin:12px 0 16px}h2{font-size:22px;line-height:1.25;margin:0}h3{font-size:17px;margin:0}p{margin:10px 0}.intro{max-width:750px;font-size:18px;color:var(--muted)}.path{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 30px}.path span{background:#eee6f7;border:1px solid #dfd1ef;border-radius:30px;padding:6px 14px;font-size:13px;font-weight:600}
+.workspace{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:24px;align-items:start}.preview-column{position:sticky;top:24px}.panel,.edit-card{background:var(--paper);border:1px solid var(--line);border-radius:20px;overflow:hidden}.panel-head{padding:20px;display:flex;justify-content:space-between;align-items:center;gap:16px}.small{font-size:13px;color:var(--muted)}.small p{margin:0}.badge{border-radius:30px;background:#ede5f6;color:#594185;padding:5px 10px;font-size:11px;white-space:nowrap;font-weight:700}.preview-wrap{padding:0 20px 20px}iframe{width:100%;height:330px;display:block;border:1px solid #e7dfef;border-radius:12px;background:#fef7ff}.preview-footer{padding:0 20px 20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}.button{font-weight:600;cursor:pointer;border:1px solid var(--line);background:white;color:var(--purple);border-radius:10px;padding:10px 16px}.primary{background:var(--purple);color:white;border-color:var(--purple)}button,input,select,textarea{font:inherit}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #8d70bc;outline-offset:3px}.tip{margin-top:18px;background:#eee8f6;border-radius:16px;padding:18px 20px;font-size:14px}.tip strong{display:block;margin-bottom:5px}.tip p{margin:0;color:#51465f}.edit-intro{margin:0 0 14px;color:var(--muted);font-size:14px}form{display:grid;gap:12px}.edit-card{padding:18px 20px}.card-title{display:flex;align-items:center;gap:10px;margin-bottom:8px}.number{width:26px;height:26px;display:inline-grid;place-items:center;border-radius:50%;background:#6750a4;color:white;flex:none;font-size:13px;font-weight:700}.explain{font-size:14px;color:var(--muted);margin:8px 0 12px}.code-chip{display:block;font:12px/1.6 ui-monospace,Consolas,monospace;background:#f4eff9;border:1px solid #e7dff0;padding:8px 10px;border-radius:8px;overflow-wrap:anywhere;white-space:normal;color:#594185}.fields{display:grid;gap:12px;margin-top:12px}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.three{grid-template-columns:repeat(3,minmax(0,1fr))}label{font-size:12px;font-weight:650;display:flex;flex-direction:column;gap:6px}input[type=text],select{width:100%;min-width:0;border:1px solid #cfc3dc;border-radius:8px;padding:8px 10px;background:white;color:var(--ink)}input[type=range]{width:100%;min-width:0;accent-color:var(--purple)}input[type=color]{width:100%;height:34px;border:1px solid #cfc3dc;background:white;border-radius:8px;padding:3px;cursor:pointer}output{font-size:12px;color:var(--purple);font-weight:600}.value{font:12px ui-monospace,monospace;color:var(--muted)}.code-section{margin-top:32px}.code-heading{padding:22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.code-heading p{font-size:14px;color:var(--muted);margin:6px 0 0}textarea{display:block;width:calc(100% - 40px);height:680px;min-height:240px;resize:vertical;margin:0 20px 20px;padding:20px;background:#24202d;color:#f4edff;border:0;border-radius:12px;font:13px/1.7 ui-monospace,Consolas,monospace;tab-size:2;white-space:pre;overflow:auto}.code-label{margin:0 20px 8px}#copy-status{margin:0 22px 16px;min-height:22px;font-size:14px;color:var(--purple)}.practice{padding:22px;margin-top:24px;border:1px dashed #bfaacf;border-radius:16px;background:#f2eaf8}.practice h2{font-size:18px}.practice p{font-size:14px}.footnote{font-size:13px;color:var(--muted);margin-top:24px}
+@media(max-width:800px){main{padding:24px 16px 40px}.workspace{grid-template-columns:1fr}.preview-column{position:static}.three{grid-template-columns:1fr}.three label{display:grid;grid-template-columns:1fr auto;align-items:center}.three input{grid-column:1/-1}textarea{font-size:12px;padding:12px}.edit-card{padding:16px}.panel-head{padding:16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="eyebrow">MYP 4 Design / UI Component Lab</div>
+<h1>One button. Five ways to change it.</h1>
+<p class="intro">Start with one working button. Change a value, watch the preview, and find the same numbered explanation in the HTML below.</p>
+<div class="path" aria-label="Learning steps"><span>1. Explore</span><span>2. Find the code</span><span>3. Make it your own</span></div>
+</header>
+<section class="workspace" aria-label="Button preview and annotated controls">
+<div class="preview-column">
+<div class="panel">
+<div class="panel-head"><div><h2>Your button</h2><p class="small">A small page showing your changes.</p></div><span class="badge">LIVE PREVIEW</span></div>
+<div class="preview-wrap"><iframe id="preview" title="Your customised button" sandbox=""></iframe></div>
+<div class="preview-footer"><button id="reset" class="button" type="button">Reset to starter</button><a href="#code-heading" class="small">See the complete HTML ↓</a></div>
+</div>
+<aside class="tip"><strong>Change one thing at a time.</strong><p>Watch what moves or grows. Then look for that property in the code. The preview and copied HTML always use the same values.</p></aside>
+<aside class="tip"><strong>HTML and styling stay together.</strong><p>The <code>&lt;button&gt;</code> tag creates the button. The <code>&lt;style&gt;</code> section inside this HTML file controls how it looks. Copy the whole block; no separate CSS file is needed.</p></aside>
+</div>
+<div>
+<p class="edit-intro"><strong>What would you like to change?</strong> Each number matches a comment in the code.</p>
+<form id="controls" autocomplete="off">
+<section class="edit-card">
+<div class="card-title"><span class="number">1</span><h3>Text on the button</h3></div>
+<p class="explain">Change the words between <code>&lt;button&gt;</code> and <code>&lt;/button&gt;</code>. Keep both tags.</p>
+<code id="text-code" class="code-chip"></code>
+<div class="fields"><label>Button text<input name="text" type="text" value="Get help" maxlength="60"></label></div>
+</section>
+<section class="edit-card">
+<div class="card-title"><span class="number">2</span><h3>Size of the button</h3></div>
+<p class="explain"><code>font-size</code> changes the letters. <code>padding</code> adds space inside: the first value changes the top and bottom; the second changes the left and right. Larger values make the button bigger.</p>
+<code id="size-code" class="code-chip"></code>
+<div class="fields three">
+<label>Text size <output id="fontSize-value" for="fontSize"></output><input id="fontSize" name="fontSize" type="range" min="12" max="32" value="16"></label>
+<label>Top / bottom <output id="padY-value" for="padY"></output><input id="padY" name="padY" type="range" min="4" max="32" value="12"></label>
+<label>Left / right <output id="padX-value" for="padX"></output><input id="padX" name="padX" type="range" min="8" max="64" value="24"></label>
+</div>
+</section>
+<section class="edit-card">
+<div class="card-title"><span class="number">3</span><h3>Button and text colours</h3></div>
+<p class="explain"><code>background-color</code> changes the button's fill. <code>color</code> changes its text. Keep the words easy to read against the background.</p>
+<code id="colour-code" class="code-chip"></code>
+<div class="fields two"><label>Button colour<input name="background" type="color" value="#6750a4"><span id="background-value" class="value"></span></label><label>Text colour<input name="foreground" type="color" value="#ffffff"><span id="foreground-value" class="value"></span></label></div>
+</section>
+<section class="edit-card">
+<div class="card-title"><span class="number">4</span><h3>Shape of the button</h3></div>
+<p class="explain">Change <code>border-radius</code>: <strong>0px</strong> gives square corners, <strong>12px</strong> gently rounds them, and <strong>999px</strong> creates a pill shape.</p>
+<code id="shape-code" class="code-chip"></code>
+<div class="fields"><label>Corner shape<select name="radius"><option value="0">Square corners · 0px</option><option value="12">Rounded corners · 12px</option><option value="999" selected>Pill shape · 999px</option></select></label></div>
+</section>
+<section class="edit-card">
+<div class="card-title"><span class="number">5</span><h3>Placement on the page</h3></div>
+<p class="explain">In this example, edit the <code>body</code> rules. With <code>display: flex</code>, <code>justify-content</code> moves the button left / centre / right and <code>align-items</code> moves it top / middle / bottom.</p>
+<code id="placement-code" class="code-chip"></code>
+<div class="fields two"><label>Horizontal position<select name="horizontal"><option value="flex-start">Left · flex-start</option><option value="center" selected>Centre · center</option><option value="flex-end">Right · flex-end</option></select></label><label>Vertical position<select name="vertical"><option value="flex-start">Top · flex-start</option><option value="center" selected>Middle · center</option><option value="flex-end">Bottom · flex-end</option></select></label></div>
+<p class="small">Keep <code>min-height: 100vh</code> so the page fills the screen. <code>padding: 32px</code> leaves space from the page edges. On your own site, apply these layout rules to the section containing the button.</p>
+</section>
+</form>
+</div>
+</section>
+<section class="panel code-section" aria-labelledby="code-heading">
+<div class="code-heading"><div><h2 id="code-heading">Your complete HTML</h2><p>The numbered comments explain what to change. This code updates with your choices.</p></div><button id="copy" class="button primary" type="button">Copy HTML</button></div>
+<p id="copy-status" role="status" aria-live="polite"></p>
+<label for="source" class="code-label small">Select and copy this complete example</label>
+<textarea id="source" readonly spellcheck="false" wrap="off"></textarea>
+</section>
+<aside class="practice"><h2>Try it yourself</h2><p>Change the text to <strong>Start learning</strong>, make the letters <strong>20px</strong>, use a new background colour, choose <strong>12px</strong> corners, and place the button at the <strong>bottom-right</strong>. Can you find each changed value in the code?</p><p>Paste the complete code into <a href="https://www.w3schools.com/html/tryit.asp?filename=tryhtml_default" target="_blank" rel="noopener">W3Schools Tryit</a>, replacing everything in the editor. Click <strong>Run</strong>.</p></aside>
+<p class="footnote">This lesson changes a button's appearance and placement. The button does not open a page or submit a form yet. This Buttons guide is the first example of the new format.</p>
+<noscript><p>JavaScript is needed for this interactive guide. <a href="button.html">Open the starter button example</a>.</p></noscript>
+</main>
+<script>
+const defaults={"text":"Get help","fontSize":16,"padY":12,"padX":24,"background":"#6750a4","foreground":"#ffffff","radius":999,"horizontal":"center","vertical":"center"};
+function makeButtonDocument(s) {
+  const safeText=String(s.text).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My button</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      box-sizing: border-box;
+      padding: 32px;
+      background: #fef7ff;
+      font-family: Arial, sans-serif;
+
+      /* 5. PLACEMENT: flex-start, center or flex-end */
+      display: flex;
+      justify-content: ${s.horizontal}; /* left / centre / right */
+      align-items: ${s.vertical}; /* top / middle / bottom */
+    }
+
+    .my-button {
+      font-family: inherit;
+      line-height: 1.25;
+      border: none;
+      cursor: pointer;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+
+      /* 2. SIZE: text size and space inside the button */
+      font-size: ${s.fontSize}px;
+      padding: ${s.padY}px ${s.padX}px; /* top & bottom, then left & right */
+
+      /* 3. COLOUR: button fill, then text */
+      background-color: ${s.background};
+      color: ${s.foreground};
+
+      /* 4. SHAPE: 0px = square, 12px = rounded, 999px = pill */
+      border-radius: ${s.radius}px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 1. TEXT: change the words between the button tags -->
+  <button class="my-button" type="button">${safeText}</button>
+</body>
+</html>
+`;
+}
+const form=document.getElementById("controls");
+const source=document.getElementById("source");
+const preview=document.getElementById("preview");
+const status=document.getElementById("copy-status");
+function settings(){
+ return {
+  text:form.elements.text.value,
+  fontSize:Number(form.elements.fontSize.value),
+  padY:Number(form.elements.padY.value),
+  padX:Number(form.elements.padX.value),
+  background:form.elements.background.value,
+  foreground:form.elements.foreground.value,
+  radius:Number(form.elements.radius.value),
+  horizontal:form.elements.horizontal.value,
+  vertical:form.elements.vertical.value
+ };
+}
+function render(){
+ const s=settings(),html=makeButtonDocument(s);
+ source.value=html;
+ preview.srcdoc=html;
+ document.getElementById("text-code").textContent="<button ...>"+s.text+"</button>";
+ document.getElementById("size-code").textContent="font-size: "+s.fontSize+"px; padding: "+s.padY+"px "+s.padX+"px;";
+ document.getElementById("colour-code").textContent="background-color: "+s.background+"; color: "+s.foreground+";";
+ document.getElementById("shape-code").textContent="border-radius: "+s.radius+"px;";
+ document.getElementById("placement-code").textContent="justify-content: "+s.horizontal+"; align-items: "+s.vertical+";";
+ for(const name of ["fontSize","padY","padX"])document.getElementById(name+"-value").value=s[name]+" px";
+ document.getElementById("background-value").textContent=s.background;
+ document.getElementById("foreground-value").textContent=s.foreground;
+ status.textContent="";
+}
+form.addEventListener("input",render);
+form.addEventListener("change",render);
+form.addEventListener("submit",event=>event.preventDefault());
+document.getElementById("reset").addEventListener("click",()=>{form.reset();render();status.textContent="Starter button restored.";});
+document.getElementById("copy").addEventListener("click",async()=>{
+ try{
+  if(!navigator.clipboard)throw new Error("Clipboard unavailable");
+  await navigator.clipboard.writeText(source.value);
+  status.textContent="Copied. Replace all code in W3Schools Tryit, then click Run.";
+ }catch{
+  source.focus();source.select();
+  status.textContent="Code selected. Press Ctrl+C (Windows) or Command+C (Mac).";
+ }
+});
+render();
+</script>
+</body>
+</html>
