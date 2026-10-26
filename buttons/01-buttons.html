@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Button lab - example 1</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@500&family=Roboto:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0..1,0">
+<style>
+
+html,body{margin:0;background:#fef7ff}
+#ui-03-1,#ui-03-1 *{box-sizing:border-box}
+#ui-03-1{width:1078px;max-width:100%;padding:26px 26px 30px;display:flex;flex-direction:column;gap:34px;background:#fef7ff;color:#1d1b20;font:400 16px/24px Roboto,sans-serif}
+#ui-03-1 .demo-group{display:flex;flex-direction:column;gap:18px;width:100%}
+#ui-03-1 .demo-heading{margin:0;font:500 11px/14px "Geist Mono",monospace;letter-spacing:1.1px;text-transform:uppercase;color:#79747e}
+#ui-03-1 .demo-row{display:flex;flex-wrap:wrap;align-items:flex-end;gap:30px 40px;width:100%}
+#ui-03-1 .demo-item{margin:0;display:flex;flex-direction:column;align-items:center;gap:12px;flex:none;max-width:100%}
+#ui-03-1 figcaption{display:flex;gap:8px;align-items:center;white-space:nowrap;font:400 12.5px/16px Geist,sans-serif;color:#49454f}
+#ui-03-1 .demo-label{padding:4px 6px;border-radius:10px;background:#6750a4;color:white;font:500 10.5px/14px "Geist Mono",monospace}
+#ui-03-1 button{cursor:pointer;flex-shrink:0}
+#ui-03-1 button:focus-visible,#ui-03-1 a:focus-visible{outline:3px solid #6750a4;outline-offset:3px}
+#ui-03-1 [hidden]{display:none!important}
+#ui-03-1 .material-symbols-rounded{font-family:"Material Symbols Rounded";font-size:24px;font-weight:400;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;white-space:nowrap;word-wrap:normal;direction:ltr;display:inline-block;flex:none;font-feature-settings:"liga";-webkit-font-smoothing:antialiased;font-variation-settings:"FILL" 0,"wght" 400,"GRAD" 0,"opsz" 24}
+#ui-03-1 .btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;height:40px;padding:0 16px;border:0;border-radius:20px;font:500 14px/normal Roboto,sans-serif;text-decoration:none}
+#ui-03-1 .btn .material-symbols-rounded{font-size:20px}
+#ui-03-1 .btn.filled{background:#6750a4;color:#fff}
+#ui-03-1 .btn.tonal{background:#e8def8;color:#4a4458}
+#ui-03-1 .btn.elevated{background:#f7f2fa;color:#6750a4;box-shadow:0 1px 3px 1px #00000026,0 1px 2px #0000004d}
+#ui-03-1 .btn.outlined{background:transparent;color:#6750a4;border:1px solid #79747e}
+#ui-03-1 .btn.text{background:transparent;color:#6750a4;padding:0 12px}
+#ui-03-1 .btn.xs{height:32px;border-radius:16px;padding:0 12px}
+#ui-03-1 .btn.m{height:56px;border-radius:28px;font-size:16px;padding:0 24px}
+#ui-03-1 .btn.l{height:96px;border-radius:48px;font-size:24px;padding:0 48px}
+#ui-03-1 .btn.xl{height:136px;border-radius:68px;font-size:32px;padding:0 64px}
+#ui-03-1 .btn.square{border-radius:12px}
+#ui-03-1 .toggle{background:#f3edf7;color:#49454f}
+#ui-03-1 .toggle[aria-pressed=true]{background:#6750a4;color:white;border-radius:12px}
+#ui-03-1 .toggle[aria-pressed=true] .material-symbols-rounded{font-variation-settings:"FILL" 1,"wght" 400,"GRAD" 0,"opsz" 24}
+#ui-03-1 .icon-btn{display:inline-grid;place-items:center;padding:0;width:40px;height:40px;border:0;border-radius:20px;background:transparent;color:#49454f}
+#ui-03-1 .icon-btn.filled{background:#6750a4;color:white}
+#ui-03-1 .icon-btn.tonal{background:#e8def8;color:#4a4458}
+#ui-03-1 .icon-btn.outlined{border:1px solid #79747e}
+#ui-03-1 .icon-btn.toggle{background:#f3edf7}
+#ui-03-1 .icon-btn.toggle[aria-pressed=true]{background:#6750a4;color:white;border-radius:12px}
+#ui-03-1 .split{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+#ui-03-1 .split-row{display:flex;gap:2px}
+#ui-03-1 .split-main{border-radius:20px 4px 4px 20px}
+#ui-03-1 .split-menu{padding:0 10px;border-radius:4px 20px 20px 4px}
+#ui-03-1 .split-menu[aria-expanded=true]{border-radius:20px}
+#ui-03-1 .split-menu[aria-expanded=true] .material-symbols-rounded{transform:rotate(180deg)}
+#ui-03-1 .menu{width:180px;margin:0;padding:8px 0;list-style:none;background:#f3edf7;border-radius:8px;box-shadow:0 2px 6px 2px #00000026,0 1px 2px #0000004d}
+#ui-03-1 .menu a{display:flex;align-items:center;height:40px;padding:0 16px;color:#1d1b20;font:400 14px/normal Roboto,sans-serif;text-decoration:none}
+#ui-03-1 .group{display:flex;align-items:center;gap:12px}
+#ui-03-1 .group .demo-pressed,#ui-03-1 .group .btn:active{width:107px!important;border-radius:12px;padding:0 28px}
+#ui-03-1 .connected{display:flex;gap:2px;align-items:flex-start}
+#ui-03-1 .connected label{position:relative;display:flex;align-items:center;gap:6px;padding:10px 16px;border-radius:8px;background:#e8def8;color:#4a4458;font:500 14px/16px Roboto,sans-serif;cursor:pointer}
+#ui-03-1 .connected label:first-child{border-radius:20px 8px 8px 20px}
+#ui-03-1 .connected label:last-child{border-radius:8px 20px 20px 8px}
+#ui-03-1 .connected input{position:absolute;opacity:0;width:1px;height:1px}
+#ui-03-1 .connected label:has(input:checked){border-radius:20px;background:#625b71;color:white}
+#ui-03-1 .connected label:has(input:checked)::before{content:"check";font:18px/22px "Material Symbols Rounded";width:18px}
+#ui-03-1 .connected label:has(input:focus-visible){outline:3px solid #6750a4;outline-offset:3px}
+#ui-03-1 .choice-text{white-space:nowrap}
+#ui-03-1 .fab,#ui-03-1 .efab{display:inline-flex;justify-content:center;align-items:center;padding:0;border:0;border-radius:16px;background:#eaddff;color:#4f378b;box-shadow:0 4px 8px 3px #00000026,0 1px 3px #0000004d}
+#ui-03-1 .fab{width:56px;height:56px}
+#ui-03-1 .fab.medium{width:80px;height:80px;border-radius:20px}
+#ui-03-1 .fab.large{width:96px;height:96px;border-radius:28px}
+#ui-03-1 .fab.medium .material-symbols-rounded{font-size:28px}
+#ui-03-1 .fab.large .material-symbols-rounded{font-size:36px}
+#ui-03-1 .efab{height:56px;gap:12px;padding:0 20px;font:500 16px/normal Roboto,sans-serif}
+#ui-03-1 .efab.medium{height:80px;padding:0 26px;border-radius:20px;font-size:22px}
+#ui-03-1 .efab.large{height:96px;padding:0 28px;border-radius:28px;font-size:24px}
+#ui-03-1 .efab.medium .material-symbols-rounded{font-size:28px}
+#ui-03-1 .efab.large .material-symbols-rounded{font-size:32px}
+#ui-03-1 .mock-scroll{max-width:100%;overflow:auto}
+#ui-03-1 .mock-page{position:relative;width:480px;height:360px;overflow:hidden;border:1px solid #e7e0ec;border-radius:14px;background:#fef7ff}
+#ui-03-1 .mock-line{position:absolute;left:17px;height:10px;border-radius:5px;background:#ece6f0}
+#ui-03-1 .mock-title{top:23px;height:16px;border-radius:6px;background:#1d1b20}
+#ui-03-1 .fab-menu{position:absolute;right:23px;bottom:23px;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+#ui-03-1 .fab-menu-items{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+#ui-03-1 .fab-menu-items a{display:flex;align-items:center;gap:10px;height:56px;padding:0 20px;border-radius:28px;background:#eaddff;color:#4f378b;font:500 15px/normal Roboto,sans-serif;text-decoration:none;white-space:nowrap}
+#ui-03-1 .fab-menu .fab[aria-expanded=true]{background:#6750a4;color:white;border-radius:28px}
+#ui-03-1 .fixed-demo{display:block;width:640px;height:300px;border:1px solid #e7e0ec;border-radius:14px}
+
+</style>
+</head>
+<body>
+<!-- Replace all code in W3Schools Tryit with this complete example. -->
+<!-- A narrow result pane wraps the examples; widen it for the Figma arrangement. -->
+<main id="ui-03-1">
+<section class="demo-group"><h2 class="demo-heading">5 colour styles - most to least emphasis</h2><div class="demo-row">
+<figure class="demo-item" style="width:84px"><button type="button" class="btn filled" style="width:84px" >Get help</button><figcaption><span class="demo-label">1a</span>Filled</figcaption></figure>
+<figure class="demo-item" style="width:96px"><button type="button" class="btn tonal" style="width:84px" >Get help</button><figcaption><span class="demo-label">1b</span>Filled tonal</figcaption></figure>
+<figure class="demo-item" style="width:84px"><button type="button" class="btn elevated" style="width:84px" >Get help</button><figcaption><span class="demo-label">1c</span>Elevated</figcaption></figure>
+<figure class="demo-item" style="width:86px"><button type="button" class="btn outlined" style="width:86px" >Get help</button><figcaption><span class="demo-label">1d</span>Outlined</figcaption></figure>
+<figure class="demo-item" style="width:76px"><button type="button" class="btn text" style="width:76px" >Get help</button><figcaption><span class="demo-label">1e</span>Text</figcaption></figure>
+</div></section>
+<section class="demo-group"><h2 class="demo-heading">With an icon</h2><div class="demo-row">
+<figure class="demo-item" style="width:106px"><button type="button" class="btn filled" style="width:93px" ><span class="material-symbols-rounded" aria-hidden="true">edit</span>Write</button><figcaption><span class="demo-label">1f</span>Leading icon</figcaption></figure>
+</div></section>
+<section class="demo-group"><h2 class="demo-heading">5 sizes - height in px</h2><div class="demo-row">
+<figure class="demo-item" style="width:73px"><button type="button" class="btn filled xs" style="width:56px" >Send</button><figcaption><span class="demo-label">1g</span>XS · 32</figcaption></figure>
+<figure class="demo-item" style="width:117px"><button type="button" class="btn filled " style="width:64px" >Send</button><figcaption><span class="demo-label">1h</span>S · 40 (default)</figcaption></figure>
+<figure class="demo-item" style="width:85px"><button type="button" class="btn filled m" style="width:85px" >Send</button><figcaption><span class="demo-label">1i</span>M · 56</figcaption></figure>
+<figure class="demo-item" style="width:151px"><button type="button" class="btn filled l" style="width:151px" >Send</button><figcaption><span class="demo-label">1j</span>L · 96</figcaption></figure>
+<figure class="demo-item" style="width:201px"><button type="button" class="btn filled xl" style="width:201px" >Send</button><figcaption><span class="demo-label">1k</span>XL · 136</figcaption></figure>
+</div></section>
+<section class="demo-group"><h2 class="demo-heading">2 shapes</h2><div class="demo-row">
+<figure class="demo-item" style="width:73px"><button type="button" class="btn filled" style="width:73px" >Round</button><figcaption><span class="demo-label">1l</span>Round</figcaption></figure>
+<figure class="demo-item" style="width:77px"><button type="button" class="btn filled square" style="width:77px" >Square</button><figcaption><span class="demo-label">1m</span>Square</figcaption></figure>
+</div></section>
+</main>
+</body>
+</html>
