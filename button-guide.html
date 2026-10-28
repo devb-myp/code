@@ -15,6 +15,7 @@ main{max-width:1200px;padding:40px 24px 64px;margin:auto}a{color:var(--purple)}.
 </head>
 <body>
 <main>
+<nav aria-label="Learning resources" style="margin-bottom:24px"><a class="button" style="display:inline-block;text-decoration:none" href="https://myp2-sensor-lab.devendharb.chatgpt.site" target="_blank" rel="noopener">MYP 2 Resource</a></nav>
 <header>
 <div class="eyebrow">MYP 4 Design / UI Component Lab</div>
 <h1>One button. Five ways to change it.</h1>
@@ -29,20 +30,20 @@ main{max-width:1200px;padding:40px 24px 64px;margin:auto}a{color:var(--purple)}.
 <div class="preview-footer"><button id="reset" class="button" type="button">Reset to starter</button><a href="#code-heading" class="small">See the short button code ↓</a></div>
 </div>
 <aside class="tip"><strong>Change one thing at a time.</strong><p>Watch what moves or grows. Then look for that property in the code. The preview and copied HTML always use the same values.</p></aside>
-<aside class="tip"><strong>Start with one line.</strong><p><code>&lt;button&gt;Get help&lt;/button&gt;</code> makes a plain button. The version below adds six short styling lines so you can change how it looks. There is no page background or separate CSS block.</p></aside>
+<aside class="tip"><strong>Start with one line.</strong><p><code>&lt;button&gt;Get help&lt;/button&gt;</code> makes a plain button. The version below adds six short styling lines so you can change how it looks. There is no page background or separate CSS block. The appearance settings sit inside the button's <code>style</code> attribute.</p></aside>
 </div>
 <div>
 <p class="edit-intro"><strong>What would you like to change?</strong> The explanations stay here, so the code stays short.</p>
 <form id="controls" autocomplete="off">
 <section class="edit-card">
 <div class="card-title"><span class="number">1</span><h3>Text on the button</h3></div>
-<p class="explain">Change the words between <code>&lt;button&gt;</code> and <code>&lt;/button&gt;</code>. Keep both tags.</p>
+<p class="explain">Change <strong>Get help</strong> to your own words, such as <strong>Start learning</strong>, between the opening <code>&lt;button ...&gt;</code> and closing <code>&lt;/button&gt;</code> tags. Keep both tags.</p>
 <code id="text-code" class="code-chip"></code>
 <div class="fields"><label>Button text<input name="text" type="text" value="Get help" maxlength="60"></label></div>
 </section>
 <section class="edit-card">
 <div class="card-title"><span class="number">2</span><h3>Size of the button</h3></div>
-<p class="explain"><code>font-size</code> changes the letters. <code>padding</code> adds space inside: the first value changes the top and bottom; the second changes the left and right. Larger values make the button bigger.</p>
+<p class="explain"><code>font-size</code> changes the letters. <code>padding</code> adds space inside: the first value changes the top and bottom; the second changes the left and right. For example, change <strong>16px → 20px</strong> for larger text or <strong>12px 24px → 16px 32px</strong> for more space inside the button. <code>px</code> means pixels.</p>
 <code id="size-code" class="code-chip"></code>
 <div class="fields three">
 <label>Text size <output id="fontSize-value" for="fontSize"></output><input id="fontSize" name="fontSize" type="range" min="12" max="32" value="16"></label>
@@ -52,7 +53,7 @@ main{max-width:1200px;padding:40px 24px 64px;margin:auto}a{color:var(--purple)}.
 </section>
 <section class="edit-card">
 <div class="card-title"><span class="number">3</span><h3>Button and text colours</h3></div>
-<p class="explain"><code>background-color</code> changes the button's fill. <code>color</code> changes its text. Keep the words easy to read against the background.</p>
+<p class="explain"><code>background-color</code> changes the button's fill. <code>color</code> changes its text. For example, replace <strong>#6750a4</strong> with <strong>#0b6e4f</strong> for a green button. Keep the words easy to read against the background.</p>
 <code id="colour-code" class="code-chip"></code>
 <div class="fields two"><label>Button colour<input name="background" type="color" value="#6750a4"><span id="background-value" class="value"></span></label><label>Text colour<input name="foreground" type="color" value="#ffffff"><span id="foreground-value" class="value"></span></label></div>
 </section>
@@ -63,8 +64,8 @@ main{max-width:1200px;padding:40px 24px 64px;margin:auto}a{color:var(--purple)}.
 <div class="fields"><label>Corner shape<select name="radius"><option value="0">Square corners · 0px</option><option value="12">Rounded corners · 12px</option><option value="999" selected>Pill shape · 999px</option></select></label></div>
 </section>
 <section class="edit-card">
-<div class="card-title"><span class="number">5</span><h3>Space around the button</h3></div>
-<p class="explain"><code>margin-left</code> adds space to the left, moving the button right. <code>margin-top</code> adds space above it, moving it down. These are spaces around the button in the page layout, not fixed screen coordinates.</p>
+<div class="card-title"><span class="number">5</span><h3>Placement on the page</h3></div>
+<p class="explain"><code>margin-left</code> adds space to the left, moving the button right. <code>margin-top</code> adds space above it, moving it down. For example, add <strong>margin-left: 40px;</strong> to move it 40 pixels right and <strong>margin-top: 20px;</strong> to move it 20 pixels down from its normal position. Set a value back to 0 to remove that extra space.</p>
 <code id="placement-code" class="code-chip"></code>
 <div class="fields two"><label>Space on the left <output id="marginLeft-value" for="marginLeft"></output><input id="marginLeft" name="marginLeft" type="range" min="0" max="200" step="10" value="0"></label><label>Space above <output id="marginTop-value" for="marginTop"></output><input id="marginTop" name="marginTop" type="range" min="0" max="160" step="10" value="0"></label></div>
 <p class="small">At 0px, these lines are left out of the code. Change a slider to add them. <strong>Padding = inside the button. Margin = outside the button.</strong></p>
@@ -79,7 +80,7 @@ main{max-width:1200px;padding:40px 24px 64px;margin:auto}a{color:var(--purple)}.
 <textarea id="source" readonly spellcheck="false" wrap="off"></textarea>
 </section>
 <aside class="practice"><h2>Try it yourself</h2><p>Change the text to <strong>Start learning</strong>, make the letters <strong>20px</strong>, use a new background colour, choose <strong>12px</strong> corners, then add <strong>40px</strong> on the left and <strong>20px</strong> above it. Can you find each changed value in the code?</p><p>Paste the button code into the <code>&lt;body&gt;</code> section in <a href="https://www.w3schools.com/html/tryit.asp?filename=tryhtml_default" target="_blank" rel="noopener">W3Schools Tryit</a>. Keep the existing page structure and click <strong>Run</strong>.</p></aside>
-<p class="footnote">This lesson changes a button's appearance and placement. The button does not open a page or submit a form yet. This Buttons guide is the first example of the new format.</p>
+<p class="footnote"><code>border: none;</code> removes the default outline around the button. Keep each colon, semicolon and quotation mark when editing. <code>type="button"</code> makes this a regular button; opening a page or performing an action needs a separate link or script.</p>
 <noscript><p>JavaScript is needed for this interactive guide. <a href="button.html">Open the starter button example</a>.</p></noscript>
 </main>
 <script>

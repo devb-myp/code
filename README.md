@@ -1,49 +1,32 @@
 # MYP 4 UI Component Lab — Buttons
 
-Ten complete HTML examples from the verified **Buttons** page of the MYP 4 Figma component lab.
+[Open the Buttons lesson](https://devb-myp.github.io/code/).
 
-## New teaching format: Buttons review
+One button, one short copyable HTML example, and five annotated ways to change it:
 
-[Open the annotated Buttons guide](https://devb-myp.github.io/code/button-guide.html).
+| Change | What to edit |
+| --- | --- |
+| Text | Words between the button tags |
+| Size | `font-size` and `padding` |
+| Colours | `background-color` and `color` |
+| Shape | `border-radius` |
+| Placement | Optional `margin-left` and `margin-top` |
 
-This preview starts with **one button in 10 lines of HTML**, with explanations outside the code. It uses inline styles for text size, padding, fill, text colour and corner shape. Optional margin-left and margin-top lines appear only when students change the spacing controls. The code has no page background, document boilerplate, separate style block or comments. Paste it inside the body of an existing HTML page or W3Schools example. The controls update the preview and copyable snippet together; reset restores the short starter in [button.html](button.html).
+## Use the lesson
 
-This is the review example for the proposed teaching format. Other component categories have not yet been converted. The original example collection below remains available during review.
+1. Change a control and watch the live preview.
+2. Read its explanation to find the property and value to edit.
+3. Select **Copy HTML**.
+4. Paste the snippet inside the `<body>` section of your existing page or [W3Schools Tryit](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_default), then run it.
 
-## Use the examples
+The starter is only 10 lines. Appearance settings are inline in the button's `style` attribute. There is no separate CSS block, page background, document boilerplate or script in the copied code. Optional margin lines appear only when used. The preview uses exactly the copied snippet.
 
-1. Download or clone this repository and open `index.html` in a browser.
-2. Choose an example and select **Copy complete HTML**.
-3. Open [W3Schools Tryit](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_default).
-4. Replace all existing editor code with the copied example and click **Run**.
-
-Each file includes its styling in a `<style>` tag and its interaction script where required. There is no separate CSS file or build step. If the browser blocks clipboard access, the start page selects the source for manual copying.
-
-## Examples
-
-1. [Buttons](buttons/01-buttons.html)
-2. [Toggle button](buttons/02-toggle-button.html)
-3. [Icon buttons](buttons/03-icon-buttons.html)
-4. [Toggle icon button](buttons/04-toggle-icon-button.html)
-5. [Split button](buttons/05-split-button.html)
-6. [Standard button group](buttons/06-standard-button-group.html)
-7. [Connected button group](buttons/07-connected-button-group.html)
-8. [Floating action button](buttons/08-floating-action-button.html)
-9. [Extended floating action button](buttons/09-extended-floating-action-button.html)
-10. [Floating action button menu](buttons/10-floating-action-button-menu.html)
-
-## Matching the Figma preview
-
-- The reference preview canvas is **1078 px wide**. Narrow result panes wrap the examples; widen the pane for the same arrangement.
-- Google Fonts supplies Roboto, Geist, Geist Mono and Material Symbols Rounded. Internet access is required for those fonts and icons.
-- Font rendering can vary slightly by browser and operating system.
-- Each file is a complete document; paste one example at a time into Tryit.
-- Sample links such as `ask.html`, `helplines.html` and fragment links are placeholders. Replace them and wire application-specific actions for your own website.
+`index.html` and `button-guide.html` contain the same finished lesson. `button.html` is the short starter. The **MYP 2 Resource** button links to the existing Sensor Lab; its access settings are managed separately.
 
 ## Verification
 
-The 10 button examples were checked in W3Schools Tryit against the Figma component dimensions and layouts. Interactive checks covered toggles, radio and checkbox selection, split menus, FAB menu opening/closing and Escape behavior, and fixed FAB positioning while scrolling.
+GitHub Actions checks text, size, colour, shape and spacing controls, copying and standalone reproduction, reset, literal text escaping, clipboard fallback and mobile layout. It also verifies that both lesson URLs have identical content and that the starter matches the initial preview.
 
-This upload covers the **Buttons page only**. It does not include the other component categories. The new index page is a launcher for the previously browser-tested examples.
+The earlier standalone examples remain in `buttons/` for existing direct links. They are no longer the main teaching page. Other component categories have not yet been converted.
 
 [Source Figma file](https://www.figma.com/design/C2ahLCBXD1DpJZMSuEpHD7?node-id=11-2)

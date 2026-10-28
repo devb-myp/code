@@ -23,20 +23,19 @@ jobs:
     steps:
       - name: Check out the component lab
         uses: actions/checkout@v4
-      - name: Validate the example collection
+      - name: Validate the one-button lesson
         run: |
           node <<'NODE'
           const fs = require('node:fs');
-          const html = fs.readFileSync('index.html', 'utf8');
-          const match = html.match(/<script type="application\/json" id="examples">([\s\S]*?)<\/script>/);
-          if (!match) throw new Error('Missing example collection');
-          const examples = JSON.parse(match[1]);
-          if (examples.length !== 10) throw new Error('Expected 10 button examples');
-          for (const example of examples) {
-            const source = fs.readFileSync(example.path, 'utf8');
-            if (source !== example.html) throw new Error('Preview/source mismatch: ' + example.path);
-          }
-          console.log('Validated all 10 standalone examples and matching previews.');
+          const assert = require('node:assert/strict');
+          const home = fs.readFileSync('index.html', 'utf8');
+          assert.equal(home, fs.readFileSync('button-guide.html', 'utf8'));
+          assert.equal((home.match(/<textarea\b/g) || []).length, 1);
+          assert.ok(!home.includes('id="examples"'));
+          const starter = fs.readFileSync('button.html', 'utf8');
+          assert.equal(starter.split('\n').length, 10);
+          assert.ok(!starter.includes('<style>'));
+          console.log('One short button example with matching home and guide pages.');
           NODE
       - name: Install guide browser test tools
         run: |
@@ -72,9 +71,9 @@ jobs:
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
         run: |
           curl --fail --silent --show-error --retry 12 --retry-delay 5 --retry-all-errors --max-time 30 "$PAGE_URL" -o /tmp/component-lab-live.html
-          grep -Fq 'Explore buttons. Copy the HTML.' /tmp/component-lab-live.html
-          for file in buttons/*.html button-guide.html button.html; do
+          grep -Fq 'One button. Five ways to change it.' /tmp/component-lab-live.html
+          for file in index.html button-guide.html button.html; do
             curl --fail --silent --show-error --retry 4 --retry-delay 5 --retry-all-errors --max-time 30 "${PAGE_URL%/}/$file" -o /tmp/component-example-live.html
             cmp "$file" /tmp/component-example-live.html
           done
-          echo "Published index and all 10 examples verified at $PAGE_URL"
+          echo "Published one-button lesson and starter verified at $PAGE_URL"
